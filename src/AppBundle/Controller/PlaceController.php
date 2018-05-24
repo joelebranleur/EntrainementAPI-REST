@@ -15,7 +15,6 @@ class PlaceController extends Controller
 
     /**
      * @Route("/places/{place_id}", name="places_one")
-     * @Route("/places", name="places_list")
      * @Method({"GET"})
      */
     public function getPlaceAction(Request $request)
@@ -37,4 +36,28 @@ class PlaceController extends Controller
 
         return new JsonResponse($formatted);
     }
+
+    /**
+     * @Route("/places", name="places_list")
+     * @Method({"GET"})
+     */
+    public function getPlacesAction(Request $request)
+    {
+        $places = $this->get('doctrine.orm.entity_manager')
+            ->getRepository('AppBundle:Place')
+            ->findAll();
+        /* @var $places Place[] */
+
+        $formatted = [];
+        foreach ($places as $place) {
+            $formatted[] = [
+                'id' => $place->getId(),
+                'name' => $place->getName(),
+                'address' => $place->getAddress(),
+            ];
+        }
+
+        return new JsonResponse($formatted);
+    }
+
 }
