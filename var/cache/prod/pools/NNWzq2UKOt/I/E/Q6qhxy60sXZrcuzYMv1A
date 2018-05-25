@@ -1,0 +1,4 @@
+<?php return array (
+  0 => 9223372036854775807,
+  1 => 'O:50:"Symfony\\Component\\Serializer\\Mapping\\ClassMetadata":2:{s:4:"name";s:21:"AppBundle\\Entity\\User";s:18:"attributesMetadata";a:0:{}}',
+);
